@@ -1,36 +1,122 @@
-/* #search-button i:hover {
-  font-size: 20px;
-  transition: all 0.3s ease-in-out;
-} */
-
-/* .clearHistory i:hover {
-  transition: all 0.3s ease-in-out;
-  font-size: 220px;
-  border-left: 1px solid black;
-  border-radius: 55px;
-  background-color: #2b4146;
-  color: rgb(255, 255, 255);
-  text-transform: uppercase;
-} */
-/* .fa-search i:hover {
-  color: rgb(11, 12, 14);
-  transition: all 0.3s ease-in-out;
-} */
-
-#today {
-  border: solid darkgray 2px;
-  /* width: 800px; */
-  height: 200px;
-  font-size: 150%;
+body {
   font-family: "Times New Roman", Times, serif;
+  background-color: rgb(233, 230, 201);
+}
+
+h1 {
+  letter-spacing: 0.5em;
+  font-weight: bold;
+  color: rgb(0, 0, 0);
+  text-shadow: 2px 2px 5px rgb(242, 255, 0);
+  background-color: rgba(255, 230, 0, 0.164);
   text-transform: uppercase;
 }
 
-#forecast {
-  border: solid darkgray 2px;
-  /* width: 800px; */
-  height: 200px;
-  font-size: 150%;
-  font-family: "Times New Roman", Times, serif;
+h2 {
+  letter-spacing: 0.5em;
+  font-weight: bold;
+  color: rgb(24, 24, 29);
+  text-shadow: 1.5px 1.5px 5px rgb(230, 241, 11);
   text-transform: uppercase;
+}
+
+.btn {
+  background-color: rgba(40, 43, 23, 0.329);
+  border: none;
+  color: black;
+}
+
+/* #search-button {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+}
+
+.clearHistory {
+  transition: all 0.3s ease-in-out;
+  background-color: rgba(40, 43, 23, 0.555);
+}
+
+.fa-search {
+  color: rgb(11, 12, 14);
+  transition: all 0.3s ease-in-out;
+}
+
+:hover {
+  background: rgba(128, 133, 33, 0.76);
+} */
+
+#todayDiv {
+  background-color: rgba(0, 0, 0, 0.185);
+  /* border: solid rgb(48, 48, 48) 1px; */
+  /* border-radius: 3px; */
+  height: 400px;
+  /* margin: auto; */
+  width: 75%;
+}
+
+#today {
+  width: 200px;
+  font-size: 120%;
+  text-transform: uppercase;
+}
+
+/* .todaysInfo {
+  font-size: 63px;
+  text-transform: uppercase; */
+/* margin-left: 50%; */
+/* margin-right: 40%; */
+/* } */
+/*5 day forcast header */
+
+.forecastDiv {
+  /* border: solid rgb(48, 48, 48) 2px; */
+  /* width: 100%; */
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin: auto;
+  /* padding: 8px; */
+  background-color: rgba(65, 64, 57, 0.445);
+}
+
+/* 5 day forecast header and container? */
+.forecast {
+  justify-content: center;
+  font-size: 42px;
+  letter-spacing: 0.5em;
+  margin: 10px;
+  text-transform: uppercase;
+  background-color: rgba(71, 73, 42, 0.589);
+}
+
+.forecastDivs {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.container {
+  height: 15em;
+  width: 9em;
+  background-color: rgba(0, 0, 0, 0.308);
+  /* margin-block-start: 0rem; */
+}
+
+.card {
+  justify-content: space-between;
+}
+
+.row {
+  text-align: center;
+}
+
+.block {
+  width: 50vh;
+  padding: 8px;
+  display: inline-block;
+  margin: 8px;
+  background-color: rgba(167, 153, 32, 0.411);
+  color: rgb(0, 0, 0);
+  text-shadow: 3px 2px 5px rgb(255, 255, 255);
 }
