@@ -1,0 +1,36 @@
+/* #search-button i:hover {
+  font-size: 20px;
+  transition: all 0.3s ease-in-out;
+} */
+
+/* .clearHistory i:hover {
+  transition: all 0.3s ease-in-out;
+  font-size: 220px;
+  border-left: 1px solid black;
+  border-radius: 55px;
+  background-color: #2b4146;
+  color: rgb(255, 255, 255);
+  text-transform: uppercase;
+} */
+/* .fa-search i:hover {
+  color: rgb(11, 12, 14);
+  transition: all 0.3s ease-in-out;
+} */
+
+#today {
+  border: solid darkgray 2px;
+  /* width: 800px; */
+  height: 200px;
+  font-size: 150%;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: uppercase;
+}
+
+#forecast {
+  border: solid darkgray 2px;
+  /* width: 800px; */
+  height: 200px;
+  font-size: 150%;
+  font-family: "Times New Roman", Times, serif;
+  text-transform: uppercase;
+}
