@@ -20,6 +20,10 @@ h2 {
   text-transform: uppercase;
 }
 
+.searchBG {
+  background-color: rgba(184, 135, 11, 0.342);
+}
+
 .btn {
   background-color: rgba(40, 43, 23, 0.329);
   border: none;
