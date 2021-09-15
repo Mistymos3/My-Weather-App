@@ -14,9 +14,10 @@
   </head>
 
   <body>
-  <div class = "currentWeather"></div>
 
-  
+
+    <!-- <div class = "currentWeather"></div> -->
+
     <header class="container-fluid text-center text-white bg-dark p-3">
       <h1>Weather Dashboard</h1>
     </header>
@@ -24,120 +25,113 @@
 <!--search weather-->
     <div class="container-fluid">
       <div class="row">
+
+
         <aside class="col-lg-3 bg-light; searchBG">
           <h5 class="mt-5 ">Search for a City:</h5>
           <div class="form-inline form-group">
-            <input class="form-control" type="text" id="search-value" />
+            <input class="form-control" type="text" id="search-value" placeholder = "City" />
             <button class="btn btn-primary" id="search-button">
               <i class="fa fa-search"></i>
             </button>
           </div>
+
 <!--clear history-->
-          <button class= "btn btn-primary clearHistory">Clear History</button>
-          <ul class="list-group history"></ul>
-          <div id="history"></div>
+            <button class= "btn btn-primary" id= "clearHistory">Clear History</button>
+            <ul class="list-group"></ul>
+            <div id="history"></div>
         </aside>
         
-<!--todays weather cityName, date, icon, temp, humidity, windSpeed, uvIndex-->
-        <div id = "todayDiv">
-            <div id = "today">
 
-              <div class = "row">
-                <div class = "col"></div>
-            <div id = "city" class = "col mx-auto city">city</div>
-            <div class = "col">
-            <img id = "icon">
-         </div>
-        </div>
 
-          <div class="row">
-            <div class="col-sm">&nbsp;</div>
+<!--CURRENT -- todays weather cityName, date, icon, temp, humidity, windSpeed, uvIndex-->
+        <div class = "col-lg-9">   
+          <div id = "todayDiv" >
+              <div id = "today" class = "todayDisplay">
+                <h3><span id = "todaysDate"></span></h3>
+                <h3><span id = "city" style="text-decoration-line: underline; font-size: 40px;"></span></h3>
+                <h3>Main Weather:   <span id = "mainWeather"></span></h3>
+                <h3>Description:   <span id = "weatherDescription"></span></h3>
+                <img id= "icon" src="">
+                <h3>Temperature:   <span id = "todaysTemp"></span></h3>
+                <h3>Humidity:   <span id = "todaysHum"></span></h3>
+                <h3>Wind Speed:   <span id = "todaysWind"></span></h3>
+                <h3>UV Index:   <span id = "todaysUV"></span></h3>
+              </div>
           </div>
-          <div id="todaysTemp" class = "row"></div>
-          <div class = "row">
-            <div class = "col-sm">&nbsp;</div>
-          </div>
-
-          <div id="todaysHum" class = "row"></div>
-          <div class = "row">
-            <div class = "col-sm">&nbsp;</div>
-          </div>
-
-          <div id="todaysWind" class = "row"></div>
-          <div class = "row">
-            <div class = "col-sm">&nbsp;</div>
-          </div>
-
-          <div class = "col-sm" id="todaysUV" class = "row"></div>
-        </div>
-      </div>
-    </div>
-  </div>
-<!-- End todays weather -->
+            <!-- End todays weather -->
 
 
-<!--5 day forecast-->
-
-<div id = "forecast" class = "container-fluid text-center pt-3">
-  <h2>5-Day Forecast</h2>
+            <!--FUTURE -- 5 day forecast-->
+          <div id = "forecast" class = "forecastDisplay container-fluid text-center pt-3">
+            <h2>5-Day Forecast</h2>
 
 
    
-              
-    <!-- <div class = "block row forecastDiv container"> -->
-
             <div class = "row">
                 
-                <div class = "col block container forecastDivs">
-                <div class = "date"></div>
-               <img id = "icon">
-                <div class = "temp"></div>
-                <div class = "humidity"></div>
-                </div>
-
-
-         <!-- <div class = "forecastDivs container"></div>  -->
               <div class = "col block container forecastDivs">
-                <div class = "date1"></div>
-              <img id = "icon1">
-                <div class = "temp1"></div>
-                <div class = "humidity1"></div>
+                <h6><span id = "date"></span></h3>
+                <img id= "icon1" src="">
+                <h6>Temperature: <span id = "temp1"></span></h6>
+                <h6>Humidity: <span id = "Hum1"></span></h6>
+                <h6>Wind Speed: <span id = "wind1"></span></h6>
+                <!-- <h6>UV Index: <span id = "UV1"></span></h6> -->
+              </div>
+
+              <div class = "col block container forecastDivs">
+                <h6><span id = "date"></span></h3>
+                  <img id= "icon2" src="">
+                  <h6>Temperature: <span id = "temp2"></span></h6>
+                  <h6>Humidity: <span id = "hum2"></span></h6>
+                  <h6>Wind Speed: <span id = "wind2"></span></h6>
+                  <!-- <h6>UV Index: <span id = "UV2"></span></h6> -->
               </div>
 
 
               <div class = "col block container forecastDivs">
-                <div class = "date2">&date</div>
-               <img id = "icon2">
-                <div class = "temp2"></div>
-                <div class = "humidity2"></div>
+                <h6><span id = "date"></span></h3>
+                  <img id= "icon3" src="">
+                  <h6>Temperature: <span id = "temp3"></span></h6>
+                  <h6>Humidity: <span id = "hum3"></span></h6>
+                  <h6>Wind Speed: <span id = "wind3"></span></h6>
+                  <!-- <h6>UV Index: <span id = "UV3"></span></h6> -->
               </div>
         
  
               <div class = "col block container forecastDivs">
-                <div class = "date3">&date</div>
-               <img id = "icon3">
-                <div class = "temp3"></div>
-                <div class = "humidity3"></div>
+                <h6><span id = "date"></span></h3>
+                  <img id= "icon4" src="">
+                  <h6>Temperature: <span id = "temp4"></span></h6>
+                  <h6>Humidity: <span id = "hum4"></span></h6>
+                  <h6>Wind Speed: <span id = "wind4"></span></h6>
+                  <!-- <h6>UV Index: <span id = "UV4"></span></h6> -->
               </div>
       
         
               <div class = "col block container forecastDivs">
-                <div class = "date4"></div>
-               <img id = "icon4">
-                <div class = "temp4"></div>
-                <div class = "humidity4"></div>
+                <h6><span id = "date"></span></h3>
+                  <img id= "icon5" src="">
+                  <h6>Temperature: <span id = "temp5"></span></h6>
+                  <h6>Humidity: <span id = "hum5"></span></h6>
+                  <h6>Wind Speed: <span id = "wind5"></span></h6>
+                  <!-- <h6>UV Index: <span id = "UV5"></span></h6> -->
               </div>
-</div> 
-</div>
- 
-    <script src="https://code.jquery.com/jquery.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+            </div> 
+          </div>
+        </div>
 
-    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" referrerpolicy="no-referrer"></script> -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
-    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+
+        <!-- jQuery -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
-    <script src="js/script.js"></script>
+
+    <!-- <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script> -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.29.1/moment.min.js" integrity="sha512-qTXRIMyZIFb8iQcfjXWCO8+M5Tbc38Qi5WzdPOYZHIlZpzBHG3L3by84BBBOiRGiEb7KKtAOAs5qYdUiZiQNNQ==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js"></script> 
+    <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js"></script> -->
+
+    <script src = "js/script.js"></script>
+    <!-- <script src = "js/loadDelete.js"></script> -->
   </body>
 </html>

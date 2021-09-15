@@ -1,259 +1,198 @@
-const currentDate = moment().format("dddd, MMMM Do YYYY");
-console.log(currentDate);
+const date = moment().format("dddd, MMMM Do YYYY");
+// console.log(date);
 const historyKey = 'history'
-console.log(historyKey)
+// console.log(historyKey)
+
+
 
 //openweathermap.org API key
 const apiKey = '61371caa7f5d756c79ef18bb6118aec1'
-// need to add ... to get current weather of any city    q={City}&appid=61371caa7f5d756c79ef18bb6118aec1
-const weatherURL = "https://api.openweathermap.org/data/2.5/weather?"
-//  need to add ...   q={city name}&appid=61371caa7f5d756c79ef18bb6118aec1
-const fiveDayForecast = 'https://api.openweathermap.org/data/2.5/forecast?'
+// need to add ...    {City}&appid=61371caa7f5d756c79ef18bb6118aec1
+// const weatherQueryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=61371caa7f5d756c79ef18bb6118aec1';
+//  need to add ...   {city name}&appid=61371caa7f5d756c79ef18bb6118aec1
+// const fiveDayForecastURL = 'https://api.openweathermap.org/data/2.5/forecast?q=' + cityName + '&appid=61371caa7f5d756c79ef18bb6118aec1';
 //lat=33.44&lon=-94.04&exclude=hourly,daily&appid=61371caa7f5d756c79ef18bb6118aec1
-const uvIndex = "https://api.openweathermap.org/data/2.5/onecall?"
-// q={cityName}&appid=61371caa7f5d756c79ef18bb6118aec1
-var queryURL = 'https://api.openweathermap.org/data/2.5/weather?'
+// const uvIndexURL = "https://api.openweathermap.org/data/2.5/onecall?" + lat + lon + "&exclude=hourly,daily&appid=61371caa7f5d756c79ef18bb6118aec1";
+
+// const iconURL = 'http://openweathermap.org/img/wn/'
+
+// var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;
+//  'https://api.openweathermap.org/data/2.5/onecall?lat=' +  lat + '&lon=' + lon + '&exclude=hourly,daily&appid=' + apiKey;// var UVIqueryURL =
+// console.log(apiKey)
+
+// console.log(queryURL);
+// console.log(UVIqueryURL);
+
+// var longitute
+// var latitude
+
+
+//GET DATE ON PAGE
+$("#todaysDate").html(date);
+
+
+
+//CURRENT WEATHER FUNCTION ... adding in uv function inside current weather function
+function displayCurrentWeather(city) {
+    var queryURL = 'https://api.openweathermap.org/data/2.5/weather?q=' + city + '&appid=' + apiKey;    
+
+    //AJAX CALL
+    $.ajax({
+        url: queryURL,
+        method: "GET"
+      }).then(function(response) {
+
+         // Printing the entire object to console
+      console.log(response);
+    //   console.log(response.coord.lon, response.coord.lat);
+
+//variables containing longitude and latitude for uvIndexURL
+var lat = (response.coord.lat)
+var lon = (response.coord.lon)
+// var icon = (response[0].icon)
+// latitude = lat;
+// longitute = lon;
+
+
+
+      // Constructing HTML containing weather information
+      $("#city").text(response.name);
+      $("#mainWeather").text(response.weather[0].main);
+      $("#weatherDescription").text(response.weather[0].description);
+      // $("icon").attr('src', buildIconUrl(response.weather[0].icon));
+      //TEMPERATURE CONVERSION FROM KELVIN TO F
+      var tempF = (response.main.temp - 273.15) * 1.80 + 32;
+      $("#todaysTemp").html(tempF.toFixed(2) + " &deg;F");
+      $("#todaysHum").text(response.main.humidity + " %");
+      $("#todaysWind").text(response.wind.speed + " MPH");
   
 
-console.log(apiKey)
-console.log(fiveDayForecast + 'q=Denver&appid=' + apiKey)
+//SAVE TO LOCAL STORAGE
+      localStorage.setItem("weather", response.name)
+
+//UV INDEX FUNCTION
+                function updateUVindex(lat, lon) {
+                                                                                                            //    lat=33.44&lon=-94.04&exclude=hourly,daily&appid=61371caa7f5d756c79ef18bb6118aec1
+                    // var uvIndexURL = "https://api.openweathermap.org/data/2.5/onecall?appid=" + apiKey + "&" + lat + "=&" + lon + "=&units=imperial"
+                    var uvIndexUrl = "https://api.openweathermap.org/data/2.5/onecall?&appid=" + apiKey + "&lat=" + lat + "&lon=" + lon
+                    //AJAX CALL
+                    $.ajax({
+                        url: uvIndexUrl, 
+                        method: "GET"
+                    }).then(function(response1) {
+
+                        //print entire object to console
+                        console.log(response1);
+
+                        // Constructing HTML containing uvIndex
+                        $("#todaysUV").text(response1.current.uvi)
+                    })
+
+                }
+
+              
+        // localStorage.setItem("lat", response.coord.lat)
+        // localStorage.setItem("lon", response.coord.lon)
+updateUVindex(lat, lon);
+
+            });
+
+        }  
 
 
-function buildCurrentWeather(citySearch) {
-    
-    let queryParameters = {
-        'appid' : apiKey,
-        'q' : citySearch,
-        'units' : 'metric',
-        // 'units' : 'imperial',
-    }
-console.log(weatherURL + $.param(queryParameters))
-// return weatherURL + $.param(queryParameter)
-}
-
-
-//USE ENTER BUTTON AS WELL AS MOUSE CLICK FOR SEARCH 
-//   const input = document.querySelector('.search-button');
-//   input.addEventListener("keyup", function(event) {
-//     if (event.keyCode === 13) {
-//         getResults(input.value);
-//     }
-//   });
-
-function buildUVindex(lat, lon) {
-    // Begin building an object to contain our API call's query parameters
-    // Set the API key
-    var queryParameter = {
-        'appid' : apiKey,
-        'lat' : lat,
-        'lon' : lon,
-        'units' : 'metric',
-        // 'units': 'imperial',
-    }
- console.log(uvIndex + $.param(queryParameter))
-    // return uvIndex + $.param(queryParameter)
-}
-
-function iconURL(iconID) {
-    return `${iconURL}${iconID}@2x.png`
-    // http://openweathermap.org/img/wn/10d@2x.png
-}
-
-
-
-// CLICK HANDLERS
-// ==========================================================
-// .on("click") function associated with the Search Button
+// search button mouse click handler
 $("#search-button").on("click", function(event) {
-    let searchValue = $("#search-value").val().trim()
-    addHistory(searchValue)
-    storeHistory()
+    // Preventing the button from trying to submit the form
 
-    // Build the query URL for the ajax request to the API
-    let queryURL = buildCurrentWeather(searchValue)
-    // Make the AJAX request to the API - GETs the JSON data at the queryURL.
-    // The data then gets passed as an argument to the updatePage function
-    $.ajax({
-        url: queryURL,
-        method: "GET",
-    }).then(updateCurrentWeather)
-})
+    event.preventDefault();
+    // Storing city name
+    var search = $("#search-value").val().trim();
 
 
-
-$("#history").on('click', '.history', function (event) {
-    let searchValue = event.currentTarget.innerText
-    // Build the query URL for the ajax request to the API
-    let queryURL = buildCurrentWeather(searchValue)
-
-    // Make the AJAX request to the API - GETs the JSON data at the queryURL.
-    // The data then gets passed as an argument to the updatePage function
-    $.ajax({
-        url: queryURL,
-        method: "GET",
-    }).then(updateCurrentWeather)
-})
-
-// Clear history with button
-$("#clearHistory").on("click", function (event) {
-    localStorage.removeItem(historyKey)
-    $("#history").empty()
-})
-
-// Load history
-loadHistory()
-function loadHistory() {
-    let history = localStorage.getItem(historyKey)
-    if (history) {
-        let storedNames = JSON.parse(history)
-console.log(storedNames)
-        for (let i = storedNames.length; i > 0; i--) {
-            let history = storedNames[i - 1]
-            if (history != '') {
-                addHistory(history)
-                console.log(`${i} ${history}`)
-            }
-        }
-    }
-}
-
-
-/**
- * takes API data (JSON/object) and turns it into elements on the page
- * @param {object} weatherData - object containing API data
- */
- function updateCurrentWeather(weatherData) {
-    let date = DateTime.fromSeconds(weatherData.dt).toLocaleString(DateTime.DATE_SHORT)
-console.log(date)
-
-    // Log the weatherData to console, where it will show up as an object
-    console.log(weatherData)
-    $("#city").text(`${weatherData.name} ${date}`)
-    $("#todaysTemp").html(`Temperature: ${weatherData.main.temp} &deg;C`)
-    $("#todaysHum").html(`Humidity: ${weatherData.main.humidity} %`)
-    $("#todaysWind").html(`Wind Speed: ${weatherData.wind.speed} MPH`)
-    $("#icon").attr('src', buildIcon(weatherData.weather[0].icon))
-    // Build the query URL for the ajax request to the API
-    let uvIndex = buildUVindex(weatherData.coord.lat, weatherData.coord.lon)
-
-
-
-    // Make the AJAX request to the API - GETs the JSON data at the queryURL.
-    // The data then gets passed as an argument to the updatePage function
-    $.ajax({
-        url: uvIndex,
-        method: "GET",
-    }).then(updateUVindex)
-}
-
-/**
-* takes API data (JSON/object) and turns it into elements on the page
-* @param {object} weatherData - object containing API data
-*/
-function updateUVindex(weatherData) {
-    let uvi = weatherData.current.uvi
-
-    // Log the weatherData to console, where it will show up as an object
-    console.log(weatherData)
-    $("#todaysUv").html(`UV Index: &nbsp;<div id="uvColor">&nbsp;${uvi}&nbsp;</div>`)
-    if (uvi < 3) {
-        $("#uvColor").attr('style', 'background:greenyellow;')
-    } else if (uvi < 6) {
-        $("#uvColor").attr('style', 'background:yellow;')
-    } else if (uvi < 8) {
-        $("#uvColor").attr('style', 'background:orange;')
-    } else if (uvi < 11) {
-        $("#uvColor").attr('style', 'background:red;color:white;')
-    } else {
-        $("#uvColor").attr('style', 'background:violet;')
-    }
-
-    for (let i = 0; i <= 5; i++) {
-        updateForecast(i, weatherData.daily[i])
-    }
-}
-
-
-
-function updateForecast(i, forecast) {
-    console.log(forecast)
-    let date = DateTime.fromSeconds(forecast.dt).toLocaleString(DateTime.DATE_SHORT)
-    $(`#date${i}`).text(date)
-    $(`#icon${i}`).attr('src', buildIcon(forecast.weather[0].icon))
-    $(`#temp${i}`).html(`Temperature: ${forecast.temp.day} &deg;C`)
-    $(`#humidity${i}`).html(`Humidity: ${forecast.humidity} %`)
-    $("#forecast").removeClass('hide')
-}
-
-function addHistory(cityHistorySearch) {
-    // Log the cityHistorySearch to console, where it will show up as an object
-    console.log(cityHistorySearch)
-
-    // Create list group to contain cities and add the city search results content for each
-    let $cityHistoryEl = $("<div>")
-    $cityHistoryEl.addClass("history")
-    $cityHistoryEl.addClass("pointer")
-    $cityHistoryEl.addClass("clickable-row")
-    $cityHistoryEl.text(cityHistorySearch)
-
-    // Add newly created element to DOM
-    $("#history").prepend($cityHistoryEl)
-}
-
-function storeHistory() {
-    let histories = []
-    $('.history').each(function () {
-        histories.push($(this).text())
-    })
-    localStorage.setItem(historyKey, JSON.stringify(histories))
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-//   function getResults (query) {
-//     fetch(`${api.queryURL}weather?q=${query}&units=metric&appid=${api.key}`)
-//       .then(weather => {
-//         return weather.json();
-//       }).then(displayResults);
-//   }
+    // Running the displayCurrentWeather function(passing in the city as an argument)
+    displayCurrentWeather(search);
   
-//   function displayResults (weather) {
-//     let city = document.querySelector('.location .city');
-//     city.innerText = `${weather.name}, ${weather.sys.country}`;
+  });
+
+
   
-//     let now = new Date();
-//     let date = document.querySelector('.location .date');
-//     date.innerText = dateBuilder(now);
+
+
+
+
+// Code for temperature conversion
+    // var fahrenheit = true;
+
+    // $("#convertToCelsius").click(function() {
+    //     if (fahrenheit) {
+    //         $("#todaysTemp").text(((($("#todaysTemp").text() - 32) * 5) / 9));
+    //     }
+    //     fahrenheit = false;
+    // });
+
+    // $("#convertToFahrenheit").click(function() {
+    //     if (fahrenheit == false) {
+    //         $("#todaysTemp").text((($("#todaysTemp").text() * (9/5)) + 32));
+    //     }
+    //     fahrenheit = true;
+    // });
+
+
+
+        
+
+
+
+
+
+
+
+    
+//   var cityInput = $("#search-value").val().trim();
+//   var noSpace = cityInput.replace(/\s/g, '+')
   
-//     let temp = document.querySelector('.current .temp');
-//     temp.innerHTML = `${Math.round(weather.main.temp)}<span>°c</span>`;
+//   //variable that stores the Open Weather Map API for 5 day forecasts 
+//   var queryURL = "https://api.openweathermap.org/data/2.5/forecast?q=" + noSpace + "&units=imperial&appid=62e3185f6eb6074c28be5645cf545d09";
+
+//   $.ajax({
+//     url: queryURL,
+//     method: "GET"
+//   }).then(function(response){
+//     $("#5day").text("5-Day Forecast:")
+    
   
-//     let weatherEl = document.querySelector('.current .weather');
-//     weatherEl.innerText = weather.weather[0].main;
-  
-//     // let hilow = document.querySelector('.hi-low');
-//     // hilow.innerText = `${Math.round(weather.main.temp_min)}°c / ${Math.round(weather.main.temp_max)}°c`;
-//   }
-  
-//   function dateBuilder (d) {
-//     let months = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"];
-//     let days = ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"];
-  
-//     let day = days[d.getDay()];
-//     let date = d.getDate();
-//     let month = months[d.getMonth()];
-//     let year = d.getFullYear();
-  
-//     return `${day} ${date} ${month} ${year}`;
-//   }
+//     //for loop that checks the data gotten from the API and returns items that include the time 15:00. 
+//     //This ensures that only 1 hour is included per day, giving us our 5 day forecast.
+//     for (var i=0; i<response.list.length; i++){
+//       if (response.list[i].dt_txt.includes("15:00:00")){
+//       //pushes the indexes that include 15:00 to the forecastArray
+//       forecastArray.push(i);
+//       //Gets the date for each included index 
+//       var dates = response.list[i].dt_txt;
+//       //formats the dates wiht the Moment API 
+//       var datesFormat = moment(dates);
+//       var datesFormat = moment(dates).format("MM/DD/YYYY");
+//       //gets the components for each index and assingns them to a variable 
+//       var datesTemp = response.list[i].main.temp;
+//       var datesHumidity = response.list[i].main.humidity;
+//       var datesIcon = response.list[i].weather[0].icon;
+//       var iconURL = "http://openweathermap.org/img/w/" + datesIcon + ".png";
+
+//         //creates cards, using the bootstrap template, that inlcude the date, icon, temperature, and humidity 
+//       $("#cards").append(
+//         '<div id="card' + i + '" class="card bg-info mx-3" style="width: 10rem;"><div class="card-body"><h5 class="card-title">Card title</h5><img src="" alt="Weather Icon"><p class="card-text temp">Temp: </p><p class="card-text humidity">Humidity: </p></div></div>'
+//       );
+//       //sets the text of each title to be the date for each card
+//       $("#card"+i+" h5").text(datesFormat);
+//       //appends the temperature for each card
+//       $("#card"+i).find(".temp").append(datesTemp + "℉");
+//       //appends the humidity for each card
+//       $("#card"+i).find(".humidity").append(datesHumidity+"%");
+//       //appends the icon for each card 
+//       $("#card"+i).find("img").attr("src",iconURL);
+   
+//     }}
+//     //stores the 5day forecast data in local storage 
+//     localStorage.setItem(noSpace + "5Day", JSON.stringify(response));
+      
+//   })

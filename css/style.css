@@ -28,6 +28,88 @@ h2 {
   background-color: rgba(40, 43, 23, 0.329);
   border: none;
   color: black;
+  margin-top: 0px;
+}
+
+/* CURRENT WEATHER */
+#todayDiv {
+  background-color: rgba(0, 0, 0, 0.185);
+  /* border: solid rgb(48, 48, 48) 1px; */
+  /* border-radius: 3px; */
+  height: 400px;
+  /* margin: auto; */
+  /* width: 75%; */
+  padding: 2%;
+}
+
+#today {
+  font-size: 120%;
+  text-transform: uppercase;
+}
+
+/* 5 day forecast header and container? */
+.forecast {
+  justify-content: center;
+  font-size: 40px;
+  letter-spacing: 0.5em;
+  margin: 10px;
+  text-transform: uppercase;
+  background-color: rgba(71, 73, 42, 0.589);
+}
+
+.row {
+  text-align: center;
+}
+
+/* FORCAST */
+
+.forecastDivs {
+  display: flex;
+  flex-direction: row;
+  align-content: center;
+  justify-content: center;
+}
+
+.container {
+  height: 15em;
+  width: 9em;
+  background-color: rgba(0, 0, 0, 0.308);
+  /* margin-block-start: 0rem; */
+}
+.block {
+  width: 50vh;
+  padding: 8px;
+  display: inline-block;
+  margin: 8px;
+  background-color: rgba(167, 153, 32, 0.411);
+  color: rgb(0, 0, 0);
+  text-shadow: 3px 2px 5px rgb(255, 255, 255);
+}
+
+/* .forecastDisplay,
+.todayDisplay {
+  display: none;
+} */
+
+/* WOW */
+.history {
+  background: rgba(108, 112, 87, 0.123);
+  font-size: 20px;
+  padding: 10px;
+  /* border: .5px solid rgb(73, 72, 72); */
+  margin: 5px;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+.clickable-row:hover {
+  background: #00000018;
+}
+
+.hide {
+  display: none;
 }
 
 /* #search-button {
@@ -49,21 +131,6 @@ h2 {
   background: rgba(128, 133, 33, 0.76);
 } */
 
-#todayDiv {
-  background-color: rgba(0, 0, 0, 0.185);
-  /* border: solid rgb(48, 48, 48) 1px; */
-  /* border-radius: 3px; */
-  height: 400px;
-  /* margin: auto; */
-  width: 75%;
-}
-
-#today {
-  width: 200px;
-  font-size: 120%;
-  text-transform: uppercase;
-}
-
 /* .todaysInfo {
   font-size: 63px;
   text-transform: uppercase; */
@@ -72,55 +139,14 @@ h2 {
 /* } */
 /*5 day forcast header */
 
-.forecastDiv {
-  /* border: solid rgb(48, 48, 48) 2px; */
-  /* width: 100%; */
+/* .card {
+  justify-content: space-between;
+} */
+
+/* .forecastDiv {
   display: flex;
   flex-direction: row;
   justify-content: center;
   margin: auto;
-  /* padding: 8px; */
   background-color: rgba(65, 64, 57, 0.445);
-}
-
-/* 5 day forecast header and container? */
-.forecast {
-  justify-content: center;
-  font-size: 42px;
-  letter-spacing: 0.5em;
-  margin: 10px;
-  text-transform: uppercase;
-  background-color: rgba(71, 73, 42, 0.589);
-}
-
-.forecastDivs {
-  display: flex;
-  flex-direction: row;
-  align-content: center;
-  justify-content: center;
-}
-
-.container {
-  height: 15em;
-  width: 9em;
-  background-color: rgba(0, 0, 0, 0.308);
-  /* margin-block-start: 0rem; */
-}
-
-.card {
-  justify-content: space-between;
-}
-
-.row {
-  text-align: center;
-}
-
-.block {
-  width: 50vh;
-  padding: 8px;
-  display: inline-block;
-  margin: 8px;
-  background-color: rgba(167, 153, 32, 0.411);
-  color: rgb(0, 0, 0);
-  text-shadow: 3px 2px 5px rgb(255, 255, 255);
-}
+} */
