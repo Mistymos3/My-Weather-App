@@ -27,7 +27,7 @@ h2 {
 .btn {
   background-color: rgba(40, 43, 23, 0.329);
   border: none;
-  color: black;
+  color: #000000;
   margin-top: 0px;
 }
 
@@ -43,7 +43,7 @@ h2 {
 }
 
 #today {
-  font-size: 120%;
+  font-size: 100%;
   text-transform: uppercase;
 }
 
