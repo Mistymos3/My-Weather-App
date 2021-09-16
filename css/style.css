@@ -36,21 +36,21 @@ h2 {
   background-color: rgba(0, 0, 0, 0.185);
   /* border: solid rgb(48, 48, 48) 1px; */
   /* border-radius: 3px; */
-  height: 400px;
+  height: 450px;
   /* margin: auto; */
   /* width: 75%; */
   padding: 2%;
 }
 
 #today {
-  font-size: 100%;
+  font-size: 15px;
   text-transform: uppercase;
 }
 
 /* 5 day forecast header and container? */
 .forecast {
   justify-content: center;
-  font-size: 40px;
+  font-size: 0.2em;
   letter-spacing: 0.5em;
   margin: 10px;
   text-transform: uppercase;
